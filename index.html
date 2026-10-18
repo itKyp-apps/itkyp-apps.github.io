@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>itKyp · Applis Android</title>
+<meta name="description" content="Applis Android faites maison pour la TV et la voiture : TV Launcher, AutoKit, AutoTracks. Gratuites, sans publicité.">
+<link rel="icon" href="images/icone-tvlauncher.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --fond: #0D1015; --carte: #161B24; --case: #1F2532; --texte: #F2F4F8; --doux: #B7BECB; --gris: #8A93A6; --accent: #F2B36B; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: #E8EBF0; font-family: Figtree, system-ui, sans-serif; }
+  a { color: var(--accent); }
+  .large { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  header { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  header .large { padding-top: 22px; padding-bottom: 22px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .nom { font-family: Oswald, sans-serif; font-size: 24px; font-weight: 600; letter-spacing: 1px; color: var(--texte); text-decoration: none; }
+  nav { display: flex; gap: 28px; font-size: 16px; }
+  nav a { color: #A9B1BF; text-decoration: none; }
+  nav a.don { color: var(--accent); font-weight: 600; }
+  .titre { padding-top: 88px; padding-bottom: 56px; }
+  .sur-titre { font-family: Oswald, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
+  h1 { margin: 16px 0 0; font-family: Oswald, sans-serif; font-size: clamp(40px, 6vw, 68px); font-weight: 600; line-height: 1.05; letter-spacing: 0.5px; color: var(--texte); max-width: 820px; }
+  .titre p { margin: 22px 0 0; font-size: 19px; line-height: 1.6; color: #A9B1BF; max-width: 640px; }
+  .applis { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; padding-bottom: 72px; }
+  article { background: var(--carte); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
+  .capture { aspect-ratio: 16 / 9; background: var(--case); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .capture img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .capture img.telephone { object-fit: contain; padding: 14px 0; }
+  .corps { padding: 24px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1; }
+  .entete { display: flex; align-items: center; gap: 14px; }
+  .entete img { width: 52px; height: 52px; border-radius: 14px; flex: none; }
+  h2 { margin: 0; font-family: Oswald, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: 0.5px; color: var(--texte); }
+  .pour { font-size: 14px; color: var(--gris); }
+  .corps p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--doux); }
+  .points { display: flex; flex-wrap: wrap; gap: 8px; }
+  .points span { font-size: 13px; padding: 5px 11px; border-radius: 20px; background: rgba(255,255,255,0.06); color: #C9CFDA; }
+  .bas { margin-top: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 10px; }
+  .telecharger { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 12px; background: var(--accent); color: var(--fond); font-weight: 700; font-size: 17px; text-decoration: none; }
+  .telecharger:hover, .don-bouton:hover { filter: brightness(1.08); }
+  .version { font-size: 13px; color: var(--gris); text-align: center; }
+  .installer { background: #121620; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .installer .large { padding-top: 72px; padding-bottom: 72px; }
+  .installer h2 { font-size: 36px; }
+  .installer > .large > p { margin: 10px 0 0; font-size: 17px; color: #A9B1BF; }
+  ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; counter-reset: e; }
+  li > div { min-width: 0; padding-top: 3px; }
+  li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.5; color: #C9CFDA; counter-increment: e; }
+  li::before { content: counter(e); width: 30px; height: 30px; flex: none; border-radius: 15px; background: var(--accent); color: var(--fond); font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: -3px; }
+  .onglets { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .onglets button { display: flex; align-items: center; gap: 10px; padding: 10px 18px 10px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: #A9B1BF; font-family: Figtree, sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; }
+  .onglets button img { width: 28px; height: 28px; border-radius: 7px; }
+  .onglets button[aria-selected="true"] { background: var(--carte); border-color: var(--accent); color: var(--texte); }
+  .panneau { margin-top: 20px; background: var(--carte); border-radius: 18px; padding: 32px; }
+  .panneau[hidden] { display: none; }
+  .besoin { margin: 0 0 20px; font-size: 15px; color: var(--gris); }
+  pre { margin: 10px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--fond); color: #E8EBF0; font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
+  .soutien .large { padding-top: 64px; }
+  .soutien .encart { background: var(--carte); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; padding: 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
+  .soutien h2 { font-size: 30px; }
+  .soutien p { margin: 8px 0 0; font-size: 16px; line-height: 1.55; color: #A9B1BF; max-width: 640px; }
+  .don-bouton { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; background: var(--accent); color: var(--fond); font-weight: 700; font-size: 17px; text-decoration: none; }
+  footer .large { padding-top: 40px; padding-bottom: 64px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; font-size: 15px; color: var(--gris); }
+  @media (max-width: 600px) { .titre { padding-top: 56px; } nav { gap: 18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="large">
+    <a class="nom" href="./">itKyp</a>
+    <nav>
+      <a href="#applis">Applis</a>
+      <a href="#installer">Installer</a>
+      <a class="don" href="https://www.paypal.com/donate/?hosted_button_id=WP5N6QQNVCN7J">Faire un don</a>
+    </nav>
+  </div>
+</header>
+
+<section class="large titre">
+  <div class="sur-titre">Applis maison · Android</div>
+  <h1>Pour la TV et la voiture. Gratuites, sans pub.</h1>
+  <p>Des applis que j'utilise tous les jours, gratuites, à télécharger et installer directement.</p>
+</section>
+
+<section id="applis" class="large applis">
+
+  <article>
+    <div class="capture"><img src="images/tvlauncher.jpg" alt="Accueil de TV Launcher : barre d'applis et fond d'écran"></div>
+    <div class="corps">
+      <div class="entete">
+        <img src="images/icone-tvlauncher.png" alt="">
+        <div><h2>TV Launcher</h2><span class="pour">Google TV · Chromecast</span></div>
+      </div>
+      <p>Un écran d'accueil simple pour Google TV : vos applis, l'heure, la météo et votre fond d'écran. Explorateur de fichiers et lecteur vidéo intégrés pour le NAS et les clés USB. Son style s'inspire du thème Aeon Nox: SiLVO de Kodi.</p>
+      <div class="points"><span>Sans publicité</span><span>Barre ou grandes tuiles</span><span>Reprise de lecture</span><span>Musique en cours</span></div>
+      <div class="bas">
+        <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvlauncher-1.0.0/TVLauncher.apk">Télécharger</a>
+        <span class="version">Version 1.0.0 · 18 oct. 2026 · 50 Mo</span>
+      </div>
+    </div>
+  </article>
+
+  <article>
+    <div class="capture"><img src="images/autokit.jpg" alt="Accueil d'AutoKit dans Android Auto : navigateur, stations, stationnement, dashcam, fichiers, réglages"></div>
+    <div class="corps">
+      <div class="entete">
+        <img src="images/icone-autokit.png" alt="">
+        <div><h2>AutoKit</h2><span class="pour">Android Auto · téléphone Android 15+</span></div>
+      </div>
+      <p>Un accueil à tuiles pour Android Auto, à l'arrêt : navigateur, stations, stationnement, dashcam et fichiers sur l'écran de la voiture. Dashcam testée avec une 70mai (A810) ; les autres modèles ne sont pas garantis.</p>
+      <div class="points"><span>À l'arrêt seulement</span><span>Navigateur</span><span>Dashcam</span></div>
+      <div class="bas">
+        <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autokit-1.9.7/AutoKit.apk">Télécharger</a>
+        <span class="version">Version 1.9.7 · 18 oct. 2026 · 3 Mo</span>
+      </div>
+    </div>
+  </article>
+
+  <article>
+    <div class="capture"><img class="telephone" src="images/autotracks.jpg" alt="AutoTracks : résumé du véhicule sur le téléphone"></div>
+    <div class="corps">
+      <div class="entete">
+        <img src="images/icone-autotracks.png" alt="">
+        <div><h2>AutoTracks</h2><span class="pour">Téléphone Android 15+</span></div>
+      </div>
+      <p>Pleins, consommation, dépenses et échéances de vos véhicules. Le même compte que le site autotracks.web.app, avec des rappels avant l'entretien et le contrôle technique.</p>
+      <div class="points"><span>Plusieurs véhicules</span><span>Rappels</span><span>En ligne et hors ligne</span></div>
+      <div class="bas">
+        <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autotracks-1.0.0/AutoTracks.apk">Télécharger</a>
+        <span class="version">Version 1.0.0 · 18 oct. 2026 · 6 Mo</span>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<section id="installer" class="installer">
+  <div class="large">
+    <h2>Installer</h2>
+    <p>Les applis ne passent pas par le Play Store : Android demande une autorisation la première fois. Une nouvelle version s'installe de la même façon, par-dessus l'ancienne, sans rien perdre.</p>
+    <div class="onglets" role="tablist">
+      <button role="tab" aria-selected="true" aria-controls="inst-tv" id="ong-tv"><img src="images/icone-tvlauncher.png" alt="">TV Launcher</button>
+      <button role="tab" aria-selected="false" aria-controls="inst-ak" id="ong-ak"><img src="images/icone-autokit.png" alt="">AutoKit</button>
+      <button role="tab" aria-selected="false" aria-controls="inst-at" id="ong-at"><img src="images/icone-autotracks.png" alt="">AutoTracks</button>
+    </div>
+    <div class="panneau" role="tabpanel" id="inst-tv" aria-labelledby="ong-tv">
+      <p class="besoin">Google TV ou Chromecast avec Google TV. Un PC est nécessaire une seule fois pour en faire l'accueil.</p>
+      <ol>
+        <li><div>Sur la TV, installez l'appli Downloader depuis le Play Store, ouvrez-la et tapez itkyp-apps.github.io, puis TV Launcher.</div></li>
+        <li><div>Autorisez Downloader à installer des applis quand la TV le demande, puis Installer. TV Launcher apparaît dans la liste des applis : vous pouvez déjà l'essayer.</div></li>
+        <li><div>Pour qu'il remplace l'accueil Google (bouton Accueil de la télécommande), désactivez l'accueil Google depuis un PC, en ADB (débogage activé dans les options pour les développeurs de la TV) :
+<pre>adb shell pm disable-user --user 0 com.google.android.apps.tv.launcherx
+adb shell pm disable-user --user 0 com.google.android.tungsten.setupwraith</pre></div></li>
+        <li><div>Revenir à l'accueil Google à tout moment :
+<pre>adb shell pm enable com.google.android.apps.tv.launcherx
+adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
+      </ol>
+    </div>
+    <div class="panneau" role="tabpanel" id="inst-ak" aria-labelledby="ong-ak" hidden>
+      <p class="besoin">Téléphone Android 15 ou plus, avec Android Auto.</p>
+      <ol>
+        <li><div>Sur le téléphone, touchez Télécharger sur la carte AutoKit, ouvrez le fichier et autorisez l'installation la première fois.</div></li>
+        <li><div>Dans les paramètres d'Android Auto, touchez dix fois « Version » pour activer le mode développeur.</div></li>
+        <li><div>Menu ⋮ puis « Paramètres pour les développeurs » : cochez « Sources inconnues ». Sans ça, Android Auto ne montre pas AutoKit dans la voiture.</div></li>
+        <li><div>Dans la voiture, AutoKit est dans la liste des applis d'Android Auto. Il ne s'utilise qu'à l'arrêt.</div></li>
+      </ol>
+    </div>
+    <div class="panneau" role="tabpanel" id="inst-at" aria-labelledby="ong-at" hidden>
+      <p class="besoin">Téléphone Android 15 ou plus. Un compte AutoTracks est nécessaire : il se crée dans l'appli (ou sur autotracks.web.app, c'est le même).</p>
+      <ol>
+        <li><div>Sur le téléphone, touchez Télécharger sur la carte AutoTracks, ouvrez le fichier et autorisez l'installation la première fois.</div></li>
+        <li><div>Ouvrez AutoTracks, puis connectez-vous ou touchez « Créer un compte ». Si vous utilisez déjà le site, vos véhicules, pleins et dépenses apparaissent.</div></li>
+        <li><div>Pour les rappels d'entretien et de contrôle technique, activez-les dans les Paramètres de l'appli : elle demande alors l'autorisation d'envoyer des notifications.</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="soutien">
+  <div class="large">
+    <div class="encart">
+      <div>
+        <h2>Ces applis vous rendent service ?</h2>
+        <p>Elles restent gratuites et sans publicité. Un petit don aide à les faire vivre.</p>
+      </div>
+      <a class="don-bouton" href="https://www.paypal.com/donate/?hosted_button_id=WP5N6QQNVCN7J">Faire un don avec PayPal</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="large">
+    <span>TV Launcher utilise le moteur de lecture de VLC (libVLC, licence LGPL 2.1) : <a href="https://www.videolan.org/legal.html">licence</a> et <a href="https://code.videolan.org/videolan/vlc-android">code source</a>.</span>
+    <span>Versions précédentes : <a href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases">toutes les versions</a></span>
+  </div>
+</footer>
+
+<script>
+  // Onglets « Installer » : un panneau par appli.
+  document.querySelectorAll('.onglets button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.onglets button').forEach(function (x) {
+        var choisi = x === b;
+        x.setAttribute('aria-selected', choisi);
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !choisi;
+      });
+    });
+  });
+</script>
+</body>
+</html>
