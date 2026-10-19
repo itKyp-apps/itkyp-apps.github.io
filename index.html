@@ -42,6 +42,7 @@
   .telecharger { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 12px; background: var(--accent); color: var(--fond); font-weight: 700; font-size: 17px; text-decoration: none; }
   .telecharger:hover, .don-bouton:hover { filter: brightness(1.08); }
   .version { font-size: 13px; color: var(--gris); text-align: center; }
+  .compteur { display: block; margin-top: 2px; }
   .installer { background: #121620; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
   .installer .large { padding-top: 72px; padding-bottom: 72px; }
   .installer h2 { font-size: 36px; }
@@ -212,7 +213,7 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
       });
       document.querySelectorAll('.compteur').forEach(function (c) {
         var n = totaux[c.dataset.app];
-        if (n) c.textContent = ' · ' + n.toLocaleString('fr-FR') + ' téléchargement' + (n > 1 ? 's' : '');
+        if (n) c.textContent = n.toLocaleString('fr-FR') + ' téléchargement' + (n > 1 ? 's' : '');
       });
     })
     .catch(function () {});
