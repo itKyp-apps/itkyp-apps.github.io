@@ -99,7 +99,7 @@
       <div class="points"><span>Sans publicité</span><span>Barre ou grandes tuiles</span><span>Reprise de lecture</span><span>Musique en cours</span></div>
       <div class="bas">
         <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvlauncher-1.0.4/TVLauncher.apk">Télécharger</a>
-        <span class="version">Version 1.0.4 · 18 oct. 2026 · 50 Mo</span>
+        <span class="version">Version 1.0.4 · 18 oct. 2026 · 50 Mo<span class="compteur" data-app="tvlauncher"></span></span>
       </div>
     </div>
   </article>
@@ -115,7 +115,7 @@
       <div class="points"><span>À l'arrêt seulement</span><span>Navigateur</span><span>Dashcam</span></div>
       <div class="bas">
         <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autokit-1.9.7/AutoKit.apk">Télécharger</a>
-        <span class="version">Version 1.9.7 · 18 oct. 2026 · 3 Mo</span>
+        <span class="version">Version 1.9.7 · 18 oct. 2026 · 3 Mo<span class="compteur" data-app="autokit"></span></span>
       </div>
     </div>
   </article>
@@ -131,7 +131,7 @@
       <div class="points"><span>Plusieurs véhicules</span><span>Rappels</span><span>En ligne et hors ligne</span></div>
       <div class="bas">
         <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autotracks-1.0.0/AutoTracks.apk">Télécharger</a>
-        <span class="version">Version 1.0.0 · 18 oct. 2026 · 6 Mo</span>
+        <span class="version">Version 1.0.0 · 18 oct. 2026 · 6 Mo<span class="compteur" data-app="autotracks"></span></span>
       </div>
     </div>
   </article>
@@ -200,6 +200,23 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
 </footer>
 
 <script>
+  // Compteur de téléchargements : total de toutes les versions de chaque appli (releases GitHub).
+  // Sans réponse de GitHub (hors ligne, trop de demandes), rien ne s'affiche.
+  fetch('https://api.github.com/repos/itKyp-apps/itkyp-apps.github.io/releases?per_page=100')
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (versions) {
+      var totaux = {};
+      versions.forEach(function (v) {
+        var app = v.tag_name.split('-')[0];
+        v.assets.forEach(function (f) { totaux[app] = (totaux[app] || 0) + f.download_count; });
+      });
+      document.querySelectorAll('.compteur').forEach(function (c) {
+        var n = totaux[c.dataset.app];
+        if (n) c.textContent = ' · ' + n.toLocaleString('fr-FR') + ' téléchargement' + (n > 1 ? 's' : '');
+      });
+    })
+    .catch(function () {});
+
   // Onglets « Installer » : un panneau par appli.
   document.querySelectorAll('.onglets button').forEach(function (b) {
     b.addEventListener('click', function () {
