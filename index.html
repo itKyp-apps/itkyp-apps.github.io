@@ -3,8 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>itKyp · TV Launcher et autres applis Android</title>
-<meta name="description" content="TV Launcher, un accueil sans publicité pour Google TV, et d'autres applis Android faites maison : AutoKit, AutoTracks. Gratuites.">
+<title>TV Launcher · accueil Google TV sans publicité</title>
+<meta name="description" content="TV Launcher : un launcher (lanceur) alternatif pour Google TV et Chromecast, sans publicité. Accueil, bibliothèque de films et séries, explorateur de fichiers, lecteur vidéo. Gratuit.">
+<link rel="canonical" href="https://itkyp-apps.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Applis Android">
+<meta property="og:url" content="https://itkyp-apps.github.io/">
+<meta property="og:title" content="TV Launcher · accueil Google TV sans publicité">
+<meta property="og:description" content="TV Launcher : un launcher (lanceur) alternatif pour Google TV et Chromecast, sans publicité. Accueil, bibliothèque de films et séries, explorateur de fichiers, lecteur vidéo. Gratuit.">
+<meta property="og:image" content="https://itkyp-apps.github.io/images/tvlauncher/accueil.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TV Launcher","applicationCategory":"UtilitiesApplication","operatingSystem":"Android TV, Google TV","description":"TV Launcher: an ad-free alternative launcher for Google TV and Chromecast. Home screen, film and series library, file explorer and video player. Free.","image":"https://itkyp-apps.github.io/images/tvlauncher/accueil.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}
+</script>
 <link rel="icon" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +98,7 @@
 
 <header>
   <div class="large">
-    <a class="nom" href="./">itKyp</a>
+    <a class="nom" href="./"><span class="fr">Applis Android</span><span class="en">Android apps</span></a>
     <div class="droite">
       <nav>
         <a href="#tvlauncher"><span class="fr">Applis</span><span class="en">Apps</span></a>
@@ -103,14 +114,13 @@
 
 <!-- TV Launcher : la première appli, avec son bandeau d'images -->
 <section id="tvlauncher" class="large appli">
-  <div class="sur-titre"><span class="fr">Applis maison · Android</span><span class="en">Home-made apps · Android</span></div>
-  <div class="entete" style="margin-top:14px">
+  <div class="entete">
     <img src="images/icone-tvlauncher.png" alt="">
     <div><h1>TV Launcher</h1></div>
   </div>
   <p class="accroche">
-    <span class="fr">Votre accueil Google TV, sans publicité : vos applis, l'heure, la météo, et une bibliothèque de films et séries en affiches.</span>
-    <span class="en">Your Google TV home screen, without ads: your apps, the time, the weather, and a library of films and series shown as posters.</span>
+    <span class="fr">Votre accueil Google TV, sans publicité : un launcher alternatif pour vos applis, l'heure, la météo, et une bibliothèque de films et séries en affiches.</span>
+    <span class="en">Your Google TV home screen, without ads: an alternative launcher for your apps, the time, the weather, and a library of films and series shown as posters.</span>
   </p>
 
   <div class="car" data-intervalle="5000">
@@ -281,10 +291,16 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
 
 <script>
   // Langue : choix gardé dans le navigateur ; sinon celle du navigateur (français, ou anglais pour toutes les autres).
-  var TITRES = { fr: 'itKyp · TV Launcher et autres applis Android', en: 'itKyp · TV Launcher and other Android apps' };
+  var TITRES = { fr: 'TV Launcher · accueil Google TV sans publicité', en: 'TV Launcher · ad-free Google TV home screen' };
+  var DESCRIPTIONS = {
+    fr: "TV Launcher : un launcher (lanceur) alternatif pour Google TV et Chromecast, sans publicité. Accueil, bibliothèque de films et séries, explorateur de fichiers, lecteur vidéo. Gratuit.",
+    en: "TV Launcher: an ad-free alternative launcher for Google TV and Chromecast. Home screen, film and series library, file explorer and video player. Free."
+  };
   function langue(l) {
     document.documentElement.lang = l;
     document.title = TITRES[l];
+    ['meta[name="description"]', 'meta[property="og:description"]'].forEach(function (q) { var m = document.querySelector(q); if (m) m.setAttribute('content', DESCRIPTIONS[l]); });
+    var ot = document.querySelector('meta[property="og:title"]'); if (ot) ot.setAttribute('content', TITRES[l]);
     document.querySelectorAll('.langues button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.langue === l); });
     majCompteurs();
   }
