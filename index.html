@@ -233,6 +233,34 @@
   </div>
 </section>
 
+<!-- Retro -->
+<section id="retro" class="large appli">
+  <div class="entete">
+    <img src="images/icone-retro.png" alt="">
+    <div><h2>Retro</h2><span class="pour"><span class="fr">Google TV · Chromecast · tablette Android</span><span class="en">Google TV · Chromecast · Android tablet</span></span></div>
+  </div>
+  <div class="car seule">
+    <div class="piste"><figure><img src="images/retro.jpg" width="1280" height="720" loading="lazy" alt="Accueil de Retro : quatre affiches, casse-brique, Tetris, Snake et Runner"></figure></div>
+  </div>
+  <div class="texte">
+    <div>
+      <p>
+        <span class="fr">Quatre petits jeux à l'ancienne pour la TV : casse-brique avec bonus, Tetris, Snake et Runner. Ils se jouent à la télécommande ou à la manette, avec des sons discrets, un menu Pause et le meilleur score de chaque jeu.</span>
+        <span class="en">Four small retro games for the TV: breakout with power-ups, Tetris, Snake and Runner. Play with the remote or a game controller, with discreet sounds, a Pause menu and the best score of each game.</span>
+      </p>
+      <div class="points">
+        <span><span class="fr">Télécommande ou manette</span><span class="en">Remote or game controller</span></span>
+        <span><span class="fr">Sans publicité</span><span class="en">No ads</span></span>
+        <span><span class="fr">Français et anglais</span><span class="en">French and English</span></span>
+      </div>
+    </div>
+    <div class="bas">
+      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/retro-1.2.0/Retro.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
+      <span class="version"><span class="fr">Version 1.2.0 · 31 oct. 2026 · 2 Mo</span><span class="en">Version 1.2.0 · Oct 31, 2026 · 2 MB</span><span class="compteur" data-app="retro"></span></span>
+    </div>
+  </div>
+</section>
+
 <section id="installer" class="installer">
   <div class="large">
     <h2><span class="fr">Installer</span><span class="en">Install</span></h2>
@@ -244,6 +272,7 @@
       <button role="tab" aria-selected="true" aria-controls="inst-tv" id="ong-tv"><img src="images/icone-tvlauncher.png" alt="">TV Launcher</button>
       <button role="tab" aria-selected="false" aria-controls="inst-ak" id="ong-ak"><img src="images/icone-autokit.png" alt="">AutoKit</button>
       <button role="tab" aria-selected="false" aria-controls="inst-at" id="ong-at"><img src="images/icone-autotracks.png" alt="">AutoTracks</button>
+      <button role="tab" aria-selected="false" aria-controls="inst-re" id="ong-re"><img src="images/icone-retro.png" alt="">Retro</button>
     </div>
 
     <div class="panneau" role="tabpanel" id="inst-tv" aria-labelledby="ong-tv">
@@ -276,6 +305,15 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
         <li><div><span class="fr">Sur le téléphone, touchez Télécharger sur la carte AutoTracks, ouvrez le fichier et autorisez l'installation la première fois.</span><span class="en">On the phone, tap Download on the AutoTracks card, open the file and allow the installation the first time.</span></div></li>
         <li><div><span class="fr">Ouvrez AutoTracks, puis connectez-vous ou touchez « Créer un compte ». Si vous utilisez déjà le site, vos véhicules, pleins et dépenses apparaissent.</span><span class="en">Open AutoTracks, then sign in or tap "Create an account". If you already use the website, your vehicles, fill-ups and expenses show up.</span></div></li>
         <li><div><span class="fr">Pour les rappels d'entretien et de contrôle technique, activez-les dans les Paramètres de l'appli : elle demande alors l'autorisation d'envoyer des notifications.</span><span class="en">For servicing and inspection reminders, turn them on in the app's Settings: it then asks for permission to send notifications.</span></div></li>
+      </ol>
+    </div>
+
+    <div class="panneau" role="tabpanel" id="inst-re" aria-labelledby="ong-re" hidden>
+      <p class="besoin"><span class="fr">Google TV, Chromecast avec Google TV ou tablette Android. Aucun PC nécessaire.</span><span class="en">Google TV, Chromecast with Google TV or an Android tablet. No PC needed.</span></p>
+      <ol>
+        <li><div><span class="fr">Sur la TV, installez l'appli Downloader depuis le Play Store, ouvrez-la et tapez le code <strong>3615698</strong> (ou l'adresse itkyp-apps.github.io), puis Télécharger sur la carte Retro. Sur une tablette, touchez Télécharger sur la carte Retro.</span><span class="en">On the TV, install the Downloader app from the Play Store, open it and type the code <strong>3615698</strong> (or the address itkyp-apps.github.io), then press Download on the Retro card. On a tablet, tap Download on the Retro card.</span></div></li>
+        <li><div><span class="fr">Autorisez l'installation d'applis quand Android le demande, puis Installer.</span><span class="en">Allow app installation when Android asks, then Install.</span></div></li>
+        <li><div><span class="fr">Retro apparaît dans la liste des applis. Choisissez un jeu avec ◀ ▶ et OK ; Retour met en pause.</span><span class="en">Retro shows up in the app list. Pick a game with ◀ ▶ and OK; Back pauses.</span></div></li>
       </ol>
     </div>
   </div>
