@@ -91,6 +91,43 @@
   .besoin { margin: 0 0 20px; font-size: 15px; color: var(--gris); }
   pre { margin: 10px 0 0; padding: 12px 14px; border-radius: 10px; background: var(--fond); color: #E8EBF0; font-size: 14px; line-height: 1.7; white-space: pre-wrap; word-break: break-all; }
   footer .large { padding-top: 40px; padding-bottom: 64px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; font-size: 15px; color: var(--gris); }
+  /* Deux cartes côte à côte : TV Launcher et TV Launcher Lite */
+  .duo { max-width: 1120px; margin: 0 auto; padding: 64px 24px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  /* Les quatre blocs de chaque carte (titre, accroche, carrousel, texte) restent alignés d'une carte à l'autre. */
+  .duo { grid-template-rows: auto auto auto auto; row-gap: 0; }
+  .duo > section.appli { max-width: none; margin: 0; padding: 0; border-top: 0; display: grid; grid-row: span 4; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .duo .entete { min-height: 56px; }
+  .duo .accroche { min-height: 6.5em; }
+  .duo h1 { font-size: 30px; line-height: 1.2; margin: 0; letter-spacing: 0.5px; }
+  .duo .accroche { font-size: 17px; }
+  .duo .car { margin-top: 0; align-self: start; }
+  .duo .texte { margin-top: 24px; }
+  .duo figcaption { font-size: 14.5px; min-height: 150px; padding: 14px 16px 50px; }
+  .duo .fleche { top: calc((100% - 150px) / 2); }
+  .duo .texte { grid-template-columns: 1fr; gap: 22px; }
+  .duo .texte p { font-size: 16px; }
+  .points a { color: var(--accent); text-decoration: none; }
+  .points a:hover { text-decoration: underline; }
+  /* Comparatif */
+  .comparatif { padding-top: 24px; padding-bottom: 56px; }
+  .comparatif h2 { font-size: 32px; }
+  .comparatif > p { margin: 10px 0 0; font-size: 17px; color: #A9B1BF; max-width: 680px; }
+  .tableau { margin-top: 24px; border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; background: var(--carte); overflow: hidden; }
+  .tableau table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .tableau th, .tableau td { padding: 13px 18px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .tableau tr:last-child th, .tableau tr:last-child td { border-bottom: 0; }
+  .tableau thead th { font-family: Oswald, sans-serif; font-weight: 500; font-size: 18px; letter-spacing: 0.5px; color: var(--texte); background: rgba(255,255,255,0.03); }
+  .tableau tbody th { font-weight: 500; color: #C9CFDA; }
+  .tableau td { color: var(--doux); width: 26%; }
+  .tableau td.oui { color: #8FD9A0; font-weight: 600; }
+  .tableau td.non { color: var(--gris); }
+  .tableau td.neutre { color: var(--doux); }
+  .tableau small { display: block; margin-top: 2px; font-size: 13px; color: var(--gris); font-weight: 400; }
+  .note-tableau { margin: 12px 4px 0; font-size: 13px; color: var(--gris); }
+  /* Bandeau du copilote */
+  .copilote { margin-bottom: 28px; padding: 14px 18px; border-radius: 14px; background: rgba(242,179,107,0.08); border: 1px solid rgba(242,179,107,0.28); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 15px; color: #E8D5BC; }
+  .copilote strong { color: var(--accent); font-family: Oswald, sans-serif; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; font-size: 14px; }
+  @media (max-width: 900px) { .duo { grid-template-columns: 1fr; gap: 48px; } .duo .fleche { top: calc((100% - 140px) / 2); } }
   @media (max-width: 760px) { .texte { grid-template-columns: 1fr; } .appli { padding-top: 44px; } nav { gap: 18px; } .droite { gap: 16px; } figcaption { min-height: 140px; } }
 </style>
 </head>
@@ -112,6 +149,7 @@
   </div>
 </header>
 
+<div class="duo">
 <!-- TV Launcher : la première appli, avec son bandeau d'images -->
 <section id="tvlauncher" class="large appli">
   <div class="entete">
@@ -168,6 +206,7 @@
         <span><span class="fr">Fiches NFO</span><span class="en">NFO files</span></span>
         <span><span class="fr">Musique en cours</span><span class="en">Now playing</span></span>
         <span><span class="fr">Télécommande, clavier ou manette</span><span class="en">Remote, keyboard or gamepad</span></span>
+        <span><a href="#tvmate"><span class="fr">Copilote TVMate sur téléphone</span><span class="en">TVMate phone copilot</span></a></span>
       </div>
     </div>
     <div class="bas">
@@ -178,8 +217,98 @@
   </div>
 </section>
 
+<!-- TV Launcher Lite : la version légère, sans Internet -->
+<section id="tvlauncherlite" class="large appli">
+  <div class="entete">
+    <img src="images/icone-tvlauncherlite.png" alt="">
+    <div><h2>TV Launcher Lite</h2><span class="pour"><span class="fr">La version légère de TV Launcher · Google TV</span><span class="en">The light version of TV Launcher · Google TV</span></span></div>
+  </div>
+  <p class="accroche">
+    <span class="fr">Un accueil Google TV simple, sans publicité et sans connexion à Internet : vos applis, l'heure et le fond d'écran de votre choix. Rien d'autre.</span>
+    <span class="en">A simple Google TV home screen, without ads and without any internet connection: your apps, the time and the wallpaper of your choice. Nothing else.</span>
+  </p>
+
+  <div class="car" data-intervalle="5000">
+    <div class="piste" tabindex="0" role="region" aria-roledescription="carrousel" aria-label="Captures de TV Launcher Lite / TV Launcher Lite screenshots">
+      <figure><img src="images/tvlauncherlite/accueil-barre.jpg" width="1280" height="720" alt="TV Launcher Lite : barre d'applis au milieu de l'écran, avec la date et l'heure dans la ligne du haut">
+        <figcaption><span class="fr"><strong>La barre.</strong> Les applis défilent au centre de l'écran, avec le nom de la TV, la date et l'heure en dessous.</span><span class="en"><strong>The bar.</strong> Apps scroll across the middle of the screen, with the TV's name, the date and the time on the line above.</span></figcaption></figure>
+      <figure><img src="images/tvlauncherlite/accueil-liste.jpg" width="1280" height="720" loading="lazy" alt="TV Launcher Lite : liste verticale d'applis à gauche de l'écran">
+        <figcaption><span class="fr"><strong>La liste.</strong> Les applis en liste verticale, à gauche, pour voir le fond d'écran en grand.</span><span class="en"><strong>The list.</strong> Apps in a vertical list on the left, to leave the wallpaper in full view.</span></figcaption></figure>
+      <figure><img src="images/tvlauncherlite/accueil-grille.jpg" width="1280" height="720" loading="lazy" alt="TV Launcher Lite : applis en grille de bannières, sous la ligne du haut">
+        <figcaption><span class="fr"><strong>La grille.</strong> Toutes les applis d'un coup d'œil, en bannières, sous la ligne du haut.</span><span class="en"><strong>The grid.</strong> All your apps at a glance, as banners, under the top line.</span></figcaption></figure>
+      <figure><img src="images/tvlauncherlite/reglages.jpg" width="1280" height="720" loading="lazy" alt="Réglages de l'accueil : disposition, couleur d'accent, sélection, bouton Accueil, bouton Éteindre">
+        <figcaption><span class="fr"><strong>Les réglages.</strong> Disposition, couleur d'accent, sélection, fond d'écran, applis (masquer, ranger, dossiers), musique en cours. Tout reste dans la TV.</span><span class="en"><strong>Settings.</strong> Layout, accent colour, selection, wallpaper, apps (hide, reorder, folders), now playing. Everything stays on the TV.</span></figcaption></figure>
+      <figure><img src="images/tvlauncherlite/reglages-disposition.jpg" width="1280" height="720" loading="lazy" alt="Choix de la disposition : barre horizontale, liste verticale ou grille">
+        <figcaption><span class="fr"><strong>Trois dispositions.</strong> Barre horizontale, liste verticale ou grille : on change quand on veut, et le fond d'écran peut être une couleur unie, un dégradé ou une photo de la TV ou d'une clé USB.</span><span class="en"><strong>Three layouts.</strong> Horizontal bar, vertical list or grid: switch whenever you like, and the wallpaper can be a solid colour, a gradient or a photo from the TV or a USB drive.</span></figcaption></figure>
+    </div>
+    <button class="fleche g" type="button" aria-label="Précédente / Previous">‹</button>
+    <button class="fleche d" type="button" aria-label="Suivante / Next">›</button>
+    <div class="points-car"></div>
+  </div>
+
+  <div class="texte">
+    <div>
+      <p>
+        <span class="fr">TV Launcher Lite reprend l'accueil de TV Launcher et rien d'autre : pas de bibliothèque de films, pas de lecteur, pas de réseau, pas de météo. Il n'a même pas l'autorisation d'accéder à Internet. Ses réglages sont gardés sur la TV, en français ou en anglais selon la langue du système.</span>
+        <span class="en">TV Launcher Lite keeps the TV Launcher home screen and nothing else: no film library, no player, no network, no weather. It does not even have permission to access the internet. Its settings are kept on the TV, in French or English depending on the system language.</span>
+      </p>
+      <div class="points">
+        <span><span class="fr">Sans publicité</span><span class="en">No ads</span></span>
+        <span><span class="fr">Aucune connexion à Internet</span><span class="en">No internet connection</span></span>
+        <span><span class="fr">Barre, liste ou grille</span><span class="en">Bar, list or grid</span></span>
+        <span><span class="fr">Fond uni, dégradé ou photo</span><span class="en">Solid, gradient or photo wallpaper</span></span>
+        <span><span class="fr">Musique en cours</span><span class="en">Now playing</span></span>
+        <span><span class="fr">Télécommande, clavier ou manette</span><span class="en">Remote, keyboard or gamepad</span></span>
+        <span><span class="fr">Français et anglais</span><span class="en">French and English</span></span>
+      </div>
+    </div>
+    <div class="bas">
+      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvllite-1.0.0/TVLauncherLite.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
+      <span class="version"><span class="fr">Version 1.0.0 · 6 nov. 2026 · 2 Mo</span><span class="en">Version 1.0.0 · Nov 6, 2026 · 2 MB</span><span class="compteur" data-app="tvllite"></span></span>
+      <span class="langue-appli"><span class="fr">Google TV · Chromecast · interface en français et en anglais</span><span class="en">Google TV · Chromecast · interface in French and English</span></span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- Que choisir ? -->
+<section id="comparatif" class="large comparatif">
+  <h2><span class="fr">Que choisir ?</span><span class="en">Which one?</span></h2>
+  <p>
+    <span class="fr">TV Launcher fait tout : accueil, films et séries, fichiers, lecteur. TV Launcher Lite ne garde que l'accueil, sans aucune connexion à Internet. Les deux peuvent être installés sur la même TV.</span>
+    <span class="en">TV Launcher does it all: home screen, films and series, files, player. TV Launcher Lite keeps only the home screen, with no internet connection at all. Both can be installed on the same TV.</span>
+  </p>
+  <div class="tableau">
+    <table>
+      <thead><tr><th></th><th>TV Launcher</th><th>TV Launcher Lite</th></tr></thead>
+      <tbody>
+        <tr><th><span class="fr">Applis en barre, liste ou grille</span><span class="en">Apps as bar, list or grid</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td></tr>
+        <tr><th><span class="fr">Fond d'écran : photo, dégradé, couleur unie</span><span class="en">Wallpaper: photo, gradient, solid colour</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td></tr>
+        <tr><th><span class="fr">Musique en cours, date et heure</span><span class="en">Now playing, date and time</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td></tr>
+        <tr><th><span class="fr">Télécommande, clavier ou manette</span><span class="en">Remote, keyboard or gamepad</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td></tr>
+        <tr><th><span class="fr">Bouton Accueil et menu Éteindre</span><span class="en">Home button and power menu</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td></tr>
+        <tr><th><span class="fr">Météo et prévisions sur cinq jours</span><span class="en">Weather and five-day forecast</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Bibliothèque de films et séries, fiches NFO</span><span class="en">Film and series library, NFO files</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Lecteur vidéo intégré (moteur VLC)</span><span class="en">Built-in video player (VLC engine)</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Explorateur de fichiers (NAS, clé USB)</span><span class="en">File explorer (NAS, USB drive)</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Réglages synchronisés entre plusieurs TV</span><span class="en">Settings synced between several TVs</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Copilote TVMate sur téléphone</span><span class="en">TVMate phone copilot</span></th><td class="oui"><span class="fr">Oui</span><span class="en">Yes</span></td><td class="non"><span class="fr">Non</span><span class="en">No</span></td></tr>
+        <tr><th><span class="fr">Accès à Internet</span><span class="en">Internet access</span></th><td class="neutre"><span class="fr">Oui : météo, images, mises à jour</span><span class="en">Yes: weather, images, updates</span></td><td class="oui"><span class="fr">Aucun</span><span class="en">None</span></td></tr>
+        <tr><th><span class="fr">Taille de l'appli</span><span class="en">App size</span></th><td class="neutre"><span class="fr">51 Mo</span><span class="en">51 MB</span></td><td class="oui"><span class="fr">2 Mo</span><span class="en">2 MB</span></td></tr>
+        <tr><th><span class="fr">Mémoire utilisée*</span><span class="en">Memory used*</span></th><td class="neutre"><span class="fr">environ 130 Mo</span><span class="en">about 130 MB</span></td><td class="oui"><span class="fr">45 Mo<small>85 Mo au maximum, avec une photo en fond</small></span><span class="en">45 MB<small>85 MB at most, with a photo wallpaper</small></span></td></tr>
+        <tr><th><span class="fr">Langues</span><span class="en">Languages</span></th><td class="neutre"><span class="fr">Français (anglais bientôt)</span><span class="en">French (English soon)</span></td><td class="oui"><span class="fr">Français et anglais</span><span class="en">French and English</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note-tableau"><span class="fr">* Mesuré sur un Chromecast avec Google TV HD, un fond d'écran affiché : à titre indicatif. À titre de comparaison, l'accueil Google TV d'origine occupe environ 170 Mo, services compris.</span><span class="en">* Measured on a Chromecast with Google TV HD with a wallpaper shown: indicative only. For comparison, the original Google TV home screen uses about 170 MB, services included.</span></p>
+</section>
+
 <!-- TVMate : le copilote de TV Launcher -->
 <section id="tvmate" class="large appli">
+  <div class="copilote">
+    <strong><span class="fr">Copilote de TV Launcher</span><span class="en">TV Launcher copilot</span></strong>
+    <span><span class="fr">TVMate fonctionne avec TV Launcher uniquement : il ne sert pas avec TV Launcher Lite, qui n'a ni films, ni séries, ni réseau.</span><span class="en">TVMate works with TV Launcher only: it is not used with TV Launcher Lite, which has no films, no series and no network.</span></span>
+  </div>
   <div class="entete">
     <img src="images/icone-tvmate.png" alt="">
     <div><h2>TVMate</h2><span class="pour"><span class="fr">Le copilote de TV Launcher · téléphone Android 8+</span><span class="en">The TV Launcher copilot · Android 8+ phone</span></span></div>
@@ -222,9 +351,37 @@
       </div>
     </div>
     <div class="bas">
-      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvmate-1.0.1/TVMate.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <span class="version"><span class="fr">Version 1.0.1 · 5 nov. 2026 · 4 Mo</span><span class="en">Version 1.0.1 · Nov 5, 2026 · 4 MB</span><span class="compteur" data-app="tvmate"></span></span>
+      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvmate-1.0.2/TVMate.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
+      <span class="version"><span class="fr">Version 1.0.2 · 6 nov. 2026 · 4 Mo</span><span class="en">Version 1.0.2 · Nov 6, 2026 · 4 MB</span><span class="compteur" data-app="tvmate"></span></span>
       <span class="langue-appli"><span class="fr">Téléphone Android 8+ · interface en français et en anglais · clé TMDB gratuite nécessaire</span><span class="en">Android 8+ phone · interface in French and English · free TMDB key required</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- Retro -->
+<section id="retro" class="large appli">
+  <div class="entete">
+    <img src="images/icone-retro.png" alt="">
+    <div><h2>Retro</h2><span class="pour"><span class="fr">Google TV · Chromecast · tablette Android</span><span class="en">Google TV · Chromecast · Android tablet</span></span></div>
+  </div>
+  <div class="car seule">
+    <div class="piste"><figure><img src="images/retro.jpg" width="1280" height="720" loading="lazy" alt="Accueil de Retro : quatre affiches, casse-brique, Tetris, Snake et Runner"></figure></div>
+  </div>
+  <div class="texte">
+    <div>
+      <p>
+        <span class="fr">Quatre petits jeux à l'ancienne pour la TV : casse-brique avec bonus, Tetris, Snake et Runner. Ils se jouent à la télécommande ou à la manette, avec des sons discrets, un menu Pause et le meilleur score de chaque jeu.</span>
+        <span class="en">Four small retro games for the TV: breakout with power-ups, Tetris, Snake and Runner. Play with the remote or a game controller, with discreet sounds, a Pause menu and the best score of each game.</span>
+      </p>
+      <div class="points">
+        <span><span class="fr">Télécommande ou manette</span><span class="en">Remote or game controller</span></span>
+        <span><span class="fr">Sans publicité</span><span class="en">No ads</span></span>
+        <span><span class="fr">Français et anglais</span><span class="en">French and English</span></span>
+      </div>
+    </div>
+    <div class="bas">
+      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/retro-1.2.1/Retro.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
+      <span class="version"><span class="fr">Version 1.2.1 · 6 nov. 2026 · 2 Mo</span><span class="en">Version 1.2.1 · Nov 6, 2026 · 2 MB</span><span class="compteur" data-app="retro"></span></span>
     </div>
   </div>
 </section>
@@ -257,62 +414,6 @@
   </div>
 </section>
 
-<!-- AutoTracks -->
-<section id="autotracks" class="large appli">
-  <div class="entete">
-    <img src="images/icone-autotracks.png" alt="">
-    <div><h2>AutoTracks</h2><span class="pour"><span class="fr">Téléphone Android 15+</span><span class="en">Android 15+ phone</span></span></div>
-  </div>
-  <div class="car seule">
-    <div class="piste"><figure><img class="telephone" src="images/autotracks.jpg" width="1280" height="720" loading="lazy" alt="AutoTracks : résumé du véhicule sur le téléphone"></figure></div>
-  </div>
-  <div class="texte">
-    <div>
-      <p>
-        <span class="fr">Pleins, consommation, dépenses et échéances de vos véhicules. Le même compte que le site autotracks.web.app, avec des rappels avant l'entretien et le contrôle technique.</span>
-        <span class="en">Fill-ups, fuel economy, expenses and deadlines for your vehicles. The same account as the autotracks.web.app website, with reminders before servicing and the technical inspection.</span>
-      </p>
-      <div class="points">
-        <span><span class="fr">Plusieurs véhicules</span><span class="en">Several vehicles</span></span>
-        <span><span class="fr">Rappels</span><span class="en">Reminders</span></span>
-        <span><span class="fr">En ligne et hors ligne</span><span class="en">Online and offline</span></span>
-      </div>
-    </div>
-    <div class="bas">
-      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autotracks-1.0.0/AutoTracks.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <span class="version"><span class="fr">Version 1.0.0 · 18 oct. 2026 · 6 Mo</span><span class="en">Version 1.0.0 · Oct 18, 2026 · 6 MB</span><span class="compteur" data-app="autotracks"></span></span>
-    </div>
-  </div>
-</section>
-
-<!-- Retro -->
-<section id="retro" class="large appli">
-  <div class="entete">
-    <img src="images/icone-retro.png" alt="">
-    <div><h2>Retro</h2><span class="pour"><span class="fr">Google TV · Chromecast · tablette Android</span><span class="en">Google TV · Chromecast · Android tablet</span></span></div>
-  </div>
-  <div class="car seule">
-    <div class="piste"><figure><img src="images/retro.jpg" width="1280" height="720" loading="lazy" alt="Accueil de Retro : quatre affiches, casse-brique, Tetris, Snake et Runner"></figure></div>
-  </div>
-  <div class="texte">
-    <div>
-      <p>
-        <span class="fr">Quatre petits jeux à l'ancienne pour la TV : casse-brique avec bonus, Tetris, Snake et Runner. Ils se jouent à la télécommande ou à la manette, avec des sons discrets, un menu Pause et le meilleur score de chaque jeu.</span>
-        <span class="en">Four small retro games for the TV: breakout with power-ups, Tetris, Snake and Runner. Play with the remote or a game controller, with discreet sounds, a Pause menu and the best score of each game.</span>
-      </p>
-      <div class="points">
-        <span><span class="fr">Télécommande ou manette</span><span class="en">Remote or game controller</span></span>
-        <span><span class="fr">Sans publicité</span><span class="en">No ads</span></span>
-        <span><span class="fr">Français et anglais</span><span class="en">French and English</span></span>
-      </div>
-    </div>
-    <div class="bas">
-      <a class="telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/retro-1.2.0/Retro.apk"><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <span class="version"><span class="fr">Version 1.2.0 · 31 oct. 2026 · 2 Mo</span><span class="en">Version 1.2.0 · Oct 31, 2026 · 2 MB</span><span class="compteur" data-app="retro"></span></span>
-    </div>
-  </div>
-</section>
-
 <section id="installer" class="installer">
   <div class="large">
     <h2><span class="fr">Installer</span><span class="en">Install</span></h2>
@@ -322,10 +423,10 @@
     </p>
     <div class="onglets" role="tablist">
       <button role="tab" aria-selected="true" aria-controls="inst-tv" id="ong-tv"><img src="images/icone-tvlauncher.png" alt="">TV Launcher</button>
+      <button role="tab" aria-selected="false" aria-controls="inst-ll" id="ong-ll"><img src="images/icone-tvlauncherlite.png" alt="">TV Launcher Lite</button>
       <button role="tab" aria-selected="false" aria-controls="inst-tm" id="ong-tm"><img src="images/icone-tvmate.png" alt="">TVMate</button>
-      <button role="tab" aria-selected="false" aria-controls="inst-ak" id="ong-ak"><img src="images/icone-autokit.png" alt="">AutoKit</button>
-      <button role="tab" aria-selected="false" aria-controls="inst-at" id="ong-at"><img src="images/icone-autotracks.png" alt="">AutoTracks</button>
       <button role="tab" aria-selected="false" aria-controls="inst-re" id="ong-re"><img src="images/icone-retro.png" alt="">Retro</button>
+      <button role="tab" aria-selected="false" aria-controls="inst-ak" id="ong-ak"><img src="images/icone-autokit.png" alt="">AutoKit</button>
     </div>
 
     <div class="panneau" role="tabpanel" id="inst-tv" aria-labelledby="ong-tv">
@@ -342,6 +443,20 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
       </ol>
     </div>
 
+    <div class="panneau" role="tabpanel" id="inst-ll" aria-labelledby="ong-ll" hidden>
+      <p class="besoin"><span class="fr">Google TV ou Chromecast avec Google TV. Aucun PC nécessaire pour l'essayer ; un PC est utile une seule fois pour en faire l'accueil.</span><span class="en">Google TV or Chromecast with Google TV. No PC needed to try it; a PC helps once, to make it your home screen.</span></p>
+      <ol>
+        <li><div><span class="fr">Sur la TV, installez l'appli Downloader depuis le Play Store, ouvrez-la et tapez le code <strong>3615698</strong> (ou l'adresse itkyp-apps.github.io), puis Télécharger sur la carte TV Launcher Lite.</span><span class="en">On the TV, install the Downloader app from the Play Store, open it and type the code <strong>3615698</strong> (or the address itkyp-apps.github.io), then press Download on the TV Launcher Lite card.</span></div></li>
+        <li><div><span class="fr">Autorisez Downloader à installer des applis quand la TV le demande, puis Installer. TV Launcher Lite apparaît dans la liste des applis : vous pouvez déjà l'essayer. Il peut rester à côté de TV Launcher.</span><span class="en">Allow Downloader to install apps when the TV asks, then Install. TV Launcher Lite shows up in the app list: you can already try it. It can sit next to TV Launcher.</span></div></li>
+        <li><div><span class="fr">Pour qu'il remplace l'accueil Google, désactivez l'accueil Google depuis un PC, en ADB (débogage activé dans les options pour les développeurs de la TV), puis choisissez « Bouton Accueil : TV Launcher Lite » dans ses réglages et autorisez l'accessibilité :</span><span class="en">To make it replace the Google home screen, disable the Google home from a PC, using ADB (debugging enabled in the TV's developer options), then choose "Home button: TV Launcher Lite" in its settings and allow accessibility:</span>
+<pre>adb shell pm disable-user --user 0 com.google.android.apps.tv.launcherx
+adb shell pm disable-user --user 0 com.google.android.tungsten.setupwraith</pre></div></li>
+        <li><div><span class="fr">Pour la musique en cours, autorisez l'accès aux notifications quand l'appli le propose. L'accessibilité sert seulement au bouton Accueil et au menu Éteindre : rien de ce qui s'affiche n'est lu. Revenir à l'accueil Google :</span><span class="en">For the now-playing line, allow notification access when the app offers it. Accessibility is only used for the Home button and the power menu: nothing on screen is read. Go back to the Google home screen:</span>
+<pre>adb shell pm enable com.google.android.apps.tv.launcherx
+adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
+      </ol>
+    </div>
+
     <div class="panneau" role="tabpanel" id="inst-tm" aria-labelledby="ong-tm" hidden>
       <p class="besoin"><span class="fr">Téléphone Android 8 ou plus, sur le même réseau que le partage où sont vos films et séries. TV Launcher n'est pas nécessaire pour l'utiliser, mais c'est lui qui affiche les images et les fiches.</span><span class="en">Android 8 or later phone, on the same network as the share where your films and series are. TV Launcher is not required to use it, but it is what shows the images and info files.</span></p>
       <ol>
@@ -352,6 +467,15 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
       </ol>
     </div>
 
+    <div class="panneau" role="tabpanel" id="inst-re" aria-labelledby="ong-re" hidden>
+      <p class="besoin"><span class="fr">Google TV, Chromecast avec Google TV ou tablette Android. Aucun PC nécessaire.</span><span class="en">Google TV, Chromecast with Google TV or an Android tablet. No PC needed.</span></p>
+      <ol>
+        <li><div><span class="fr">Sur la TV, installez l'appli Downloader depuis le Play Store, ouvrez-la et tapez le code <strong>3615698</strong> (ou l'adresse itkyp-apps.github.io), puis Télécharger sur la carte Retro. Sur une tablette, touchez Télécharger sur la carte Retro.</span><span class="en">On the TV, install the Downloader app from the Play Store, open it and type the code <strong>3615698</strong> (or the address itkyp-apps.github.io), then press Download on the Retro card. On a tablet, tap Download on the Retro card.</span></div></li>
+        <li><div><span class="fr">Autorisez l'installation d'applis quand Android le demande, puis Installer.</span><span class="en">Allow app installation when Android asks, then Install.</span></div></li>
+        <li><div><span class="fr">Retro apparaît dans la liste des applis. Choisissez un jeu avec ◀ ▶ et OK ; Retour met en pause.</span><span class="en">Retro shows up in the app list. Pick a game with ◀ ▶ and OK; Back pauses.</span></div></li>
+      </ol>
+    </div>
+
     <div class="panneau" role="tabpanel" id="inst-ak" aria-labelledby="ong-ak" hidden>
       <p class="besoin"><span class="fr">Téléphone Android 15 ou plus, avec Android Auto.</span><span class="en">Android 15 or later phone, with Android Auto.</span></p>
       <ol>
@@ -359,24 +483,6 @@ adb shell pm enable com.google.android.tungsten.setupwraith</pre></div></li>
         <li><div><span class="fr">Dans les paramètres d'Android Auto, touchez dix fois « Version » pour activer le mode développeur.</span><span class="en">In Android Auto's settings, tap "Version" ten times to turn on developer mode.</span></div></li>
         <li><div><span class="fr">Menu ⋮ puis « Paramètres pour les développeurs » : cochez « Sources inconnues ». Sans ça, Android Auto ne montre pas AutoKit dans la voiture.</span><span class="en">Menu ⋮ then "Developer settings": tick "Unknown sources". Without it, Android Auto does not show AutoKit in the car.</span></div></li>
         <li><div><span class="fr">Dans la voiture, AutoKit est dans la liste des applis d'Android Auto. Il ne s'utilise qu'à l'arrêt.</span><span class="en">In the car, AutoKit is in Android Auto's app list. It can only be used while parked.</span></div></li>
-      </ol>
-    </div>
-
-    <div class="panneau" role="tabpanel" id="inst-at" aria-labelledby="ong-at" hidden>
-      <p class="besoin"><span class="fr">Téléphone Android 15 ou plus. Un compte AutoTracks est nécessaire : il se crée dans l'appli (ou sur autotracks.web.app, c'est le même).</span><span class="en">Android 15 or later phone. An AutoTracks account is needed: create it in the app (or on autotracks.web.app, it is the same one).</span></p>
-      <ol>
-        <li><div><span class="fr">Sur le téléphone, touchez Télécharger sur la carte AutoTracks, ouvrez le fichier et autorisez l'installation la première fois.</span><span class="en">On the phone, tap Download on the AutoTracks card, open the file and allow the installation the first time.</span></div></li>
-        <li><div><span class="fr">Ouvrez AutoTracks, puis connectez-vous ou touchez « Créer un compte ». Si vous utilisez déjà le site, vos véhicules, pleins et dépenses apparaissent.</span><span class="en">Open AutoTracks, then sign in or tap "Create an account". If you already use the website, your vehicles, fill-ups and expenses show up.</span></div></li>
-        <li><div><span class="fr">Pour les rappels d'entretien et de contrôle technique, activez-les dans les Paramètres de l'appli : elle demande alors l'autorisation d'envoyer des notifications.</span><span class="en">For servicing and inspection reminders, turn them on in the app's Settings: it then asks for permission to send notifications.</span></div></li>
-      </ol>
-    </div>
-
-    <div class="panneau" role="tabpanel" id="inst-re" aria-labelledby="ong-re" hidden>
-      <p class="besoin"><span class="fr">Google TV, Chromecast avec Google TV ou tablette Android. Aucun PC nécessaire.</span><span class="en">Google TV, Chromecast with Google TV or an Android tablet. No PC needed.</span></p>
-      <ol>
-        <li><div><span class="fr">Sur la TV, installez l'appli Downloader depuis le Play Store, ouvrez-la et tapez le code <strong>3615698</strong> (ou l'adresse itkyp-apps.github.io), puis Télécharger sur la carte Retro. Sur une tablette, touchez Télécharger sur la carte Retro.</span><span class="en">On the TV, install the Downloader app from the Play Store, open it and type the code <strong>3615698</strong> (or the address itkyp-apps.github.io), then press Download on the Retro card. On a tablet, tap Download on the Retro card.</span></div></li>
-        <li><div><span class="fr">Autorisez l'installation d'applis quand Android le demande, puis Installer.</span><span class="en">Allow app installation when Android asks, then Install.</span></div></li>
-        <li><div><span class="fr">Retro apparaît dans la liste des applis. Choisissez un jeu avec ◀ ▶ et OK ; Retour met en pause.</span><span class="en">Retro shows up in the app list. Pick a game with ◀ ▶ and OK; Back pauses.</span></div></li>
       </ol>
     </div>
   </div>
