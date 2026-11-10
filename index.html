@@ -80,7 +80,8 @@
   .infos h2 { margin: 0; font-family: Oswald, sans-serif; font-size: 20px; font-weight: 600; letter-spacing: .4px; color: var(--texte); }
   .phrase { margin: 1px 0 0; font-size: 14.5px; color: var(--doux); }
   .meta { margin: 2px 0 0; font-size: 12.5px; color: var(--gris); }
-  .actions { display: flex; align-items: center; gap: 8px; flex: none; }
+  .actions { display: flex; flex-direction: column; align-items: stretch; gap: 6px; flex: none; }
+  .boutons { display: flex; align-items: center; gap: 8px; }
   /* Télécharger et déplier : même hauteur, même arrondi */
   .btn, .plus { height: 40px; border-radius: 12px; }
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px; background: var(--bouton); color: var(--sur-bouton); font: 700 14px Figtree, sans-serif; text-decoration: none; border: 0;
@@ -118,7 +119,8 @@
   .liens { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 14px; align-items: center; }
   .liens a { text-decoration: none; font-weight: 600; }
   .liens a:hover { text-decoration: underline; }
-  .compteur { color: var(--gris); font-size: 13px; margin-left: auto; }
+  .compteur { color: var(--gris); font-size: 12.5px; text-align: center; }
+  .compteur:empty { display: none; }
 
   /* Bandeau d'images */
   .car { position: relative; background: var(--case); border-radius: 14px; overflow: hidden; }
@@ -177,8 +179,7 @@
     .ligne { flex-wrap: wrap; }
     .infos { flex: 1 1 calc(100% - 64px); }
     .actions { width: 100%; }
-    .actions .btn { flex: 1; }
-    .compteur { margin-left: 0; width: 100%; }
+    .boutons .btn { flex: 1; }
   }
 
 </style>
@@ -216,8 +217,11 @@
       <p class="meta"><span class="fr">Google TV · Chromecast</span><span class="en">Google TV · Chromecast</span> · <span class="version" data-app="tvlauncher"><span class="fr">Version 1.2.1 · 10 nov. 2026</span><span class="en">Version 1.2.1 · Nov 10, 2026</span></span></p>
     </div>
     <div class="actions">
-      <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvlauncher-1.2.1/TVLauncher.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvlauncher" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="boutons">
+        <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvlauncher-1.2.1/TVLauncher.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
+        <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvlauncher" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <span class="compteur" data-app="tvlauncher"></span>
     </div>
   </div>
   <div class="detail" id="detail-tvlauncher" inert><div class="detail-int"><div class="detail-pad">
@@ -274,7 +278,7 @@
       <h3><span class="fr">Nouveautés de la version <b class="num"></b></span><span class="en">What's new in version <b class="num"></b></span></h3>
       <ul class="fr"></ul><ul class="en"></ul>
     </div>
-    <div class="liens"><a href="#comparatif" data-ouvre="comparatif"><span class="fr">Comparer avec la version Lite</span><span class="en">Compare with the Lite version</span></a><a href="#installer" data-ouvre="installer" data-onglet="ong-tv"><span class="fr">Comment installer</span><span class="en">How to install</span></a><span class="compteur" data-app="tvlauncher"></span></div>
+    <div class="liens"><a href="#comparatif" data-ouvre="comparatif"><span class="fr">Comparer avec la version Lite</span><span class="en">Compare with the Lite version</span></a><a href="#installer" data-ouvre="installer" data-onglet="ong-tv"><span class="fr">Comment installer</span><span class="en">How to install</span></a></div>
   </div></div></div>
 </article>
 <article class="carte" id="tvlauncherlite" data-app="tvllite">
@@ -286,8 +290,11 @@
       <p class="meta"><span class="fr">Google TV · Chromecast</span><span class="en">Google TV · Chromecast</span> · <span class="version" data-app="tvllite"><span class="fr">Version 1.0.1 · 10 nov. 2026</span><span class="en">Version 1.0.1 · Nov 10, 2026</span></span></p>
     </div>
     <div class="actions">
-      <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvllite-1.0.1/TVLauncherLite.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvlauncherlite" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="boutons">
+        <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvllite-1.0.1/TVLauncherLite.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
+        <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvlauncherlite" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <span class="compteur" data-app="tvllite"></span>
     </div>
   </div>
   <div class="detail" id="detail-tvlauncherlite" inert><div class="detail-int"><div class="detail-pad">
@@ -330,7 +337,7 @@
       <h3><span class="fr">Nouveautés de la version <b class="num"></b></span><span class="en">What's new in version <b class="num"></b></span></h3>
       <ul class="fr"></ul><ul class="en"></ul>
     </div>
-    <div class="liens"><a href="#comparatif" data-ouvre="comparatif"><span class="fr">Comparer avec TV Launcher</span><span class="en">Compare with TV Launcher</span></a><a href="#installer" data-ouvre="installer" data-onglet="ong-ll"><span class="fr">Comment installer</span><span class="en">How to install</span></a><span class="compteur" data-app="tvllite"></span></div>
+    <div class="liens"><a href="#comparatif" data-ouvre="comparatif"><span class="fr">Comparer avec TV Launcher</span><span class="en">Compare with TV Launcher</span></a><a href="#installer" data-ouvre="installer" data-onglet="ong-ll"><span class="fr">Comment installer</span><span class="en">How to install</span></a></div>
   </div></div></div>
 </article>
 <article class="carte" id="tvmate" data-app="tvmate">
@@ -342,8 +349,11 @@
       <p class="meta"><span class="fr">Téléphone Android 8+</span><span class="en">Android 8+ phone</span> · <span class="version" data-app="tvmate"><span class="fr">Version 1.0.3 · 10 nov. 2026</span><span class="en">Version 1.0.3 · Nov 10, 2026</span></span></p>
     </div>
     <div class="actions">
-      <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvmate-1.0.3/TVMate.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvmate" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="boutons">
+        <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/tvmate-1.0.3/TVMate.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
+        <button class="plus" type="button" aria-expanded="false" aria-controls="detail-tvmate" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <span class="compteur" data-app="tvmate"></span>
     </div>
   </div>
   <div class="detail" id="detail-tvmate" inert><div class="detail-int"><div class="detail-pad">
@@ -387,7 +397,7 @@
       <h3><span class="fr">Nouveautés de la version <b class="num"></b></span><span class="en">What's new in version <b class="num"></b></span></h3>
       <ul class="fr"></ul><ul class="en"></ul>
     </div>
-    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-tm"><span class="fr">Comment installer</span><span class="en">How to install</span></a><span class="compteur" data-app="tvmate"></span></div>
+    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-tm"><span class="fr">Comment installer</span><span class="en">How to install</span></a></div>
   </div></div></div>
 </article>
 <article class="carte" id="retro" data-app="retro">
@@ -399,8 +409,11 @@
       <p class="meta"><span class="fr">Google TV · Chromecast · tablette Android</span><span class="en">Google TV · Chromecast · Android tablet</span> · <span class="version" data-app="retro"><span class="fr">Version 1.2.1 · 6 nov. 2026</span><span class="en">Version 1.2.1 · Nov 6, 2026</span></span></p>
     </div>
     <div class="actions">
-      <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/retro-1.2.1/Retro.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <button class="plus" type="button" aria-expanded="false" aria-controls="detail-retro" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="boutons">
+        <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/retro-1.2.1/Retro.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
+        <button class="plus" type="button" aria-expanded="false" aria-controls="detail-retro" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <span class="compteur" data-app="retro"></span>
     </div>
   </div>
   <div class="detail" id="detail-retro" inert><div class="detail-int"><div class="detail-pad">
@@ -422,7 +435,7 @@
       <h3><span class="fr">Nouveautés de la version <b class="num"></b></span><span class="en">What's new in version <b class="num"></b></span></h3>
       <ul class="fr"></ul><ul class="en"></ul>
     </div>
-    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-re"><span class="fr">Comment installer</span><span class="en">How to install</span></a><span class="compteur" data-app="retro"></span></div>
+    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-re"><span class="fr">Comment installer</span><span class="en">How to install</span></a></div>
   </div></div></div>
 </article>
 <article class="carte" id="autokit" data-app="autokit">
@@ -434,8 +447,11 @@
       <p class="meta"><span class="fr">Android Auto · téléphone Android 15+</span><span class="en">Android Auto · Android 15+ phone</span> · <span class="version" data-app="autokit"><span class="fr">Version 1.9.8 · 10 nov. 2026</span><span class="en">Version 1.9.8 · Nov 10, 2026</span></span></p>
     </div>
     <div class="actions">
-      <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autokit-1.9.8/AutoKit.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
-      <button class="plus" type="button" aria-expanded="false" aria-controls="detail-autokit" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="boutons">
+        <a class="btn telecharger" href="https://github.com/itKyp-apps/itkyp-apps.github.io/releases/download/autokit-1.9.8/AutoKit.apk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="fr">Télécharger</span><span class="en">Download</span></a>
+        <button class="plus" type="button" aria-expanded="false" aria-controls="detail-autokit" aria-label="Détails / Details"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <span class="compteur" data-app="autokit"></span>
     </div>
   </div>
   <div class="detail" id="detail-autokit" inert><div class="detail-int"><div class="detail-pad">
@@ -458,7 +474,7 @@
       <h3><span class="fr">Nouveautés de la version <b class="num"></b></span><span class="en">What's new in version <b class="num"></b></span></h3>
       <ul class="fr"></ul><ul class="en"></ul>
     </div>
-    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-ak"><span class="fr">Comment installer</span><span class="en">How to install</span></a><span class="compteur" data-app="autokit"></span></div>
+    <div class="liens"><a href="#installer" data-ouvre="installer" data-onglet="ong-ak"><span class="fr">Comment installer</span><span class="en">How to install</span></a></div>
   </div></div></div>
 </article>
   </div>
